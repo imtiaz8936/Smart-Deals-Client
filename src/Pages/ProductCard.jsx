@@ -1,7 +1,8 @@
 import React from "react";
+import { Link } from "react-router";
 
 const ProductCard = ({ product }) => {
-  const { title, price_min, price_max, image, condition } = product;
+  const { _id, title, price_min, price_max, image, condition } = product;
 
   return (
     <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-4 hover:shadow-lg transition-all duration-300 flex flex-col">
@@ -26,9 +27,11 @@ const ProductCard = ({ product }) => {
       </p>
 
       {/* View Details Button */}
-      <button className="mt-auto border border-purple-500 text-purple-600 font-medium py-2 rounded-md hover:bg-purple-600 hover:text-white transition-colors duration-300">
-        View Details
-      </button>
+      <Link to={`/product-details/${_id}`}>
+        <button className="w-full mt-auto border border-purple-500 text-purple-600 font-medium py-2 rounded-md hover:bg-purple-600 hover:text-white transition-colors duration-300">
+          View Details
+        </button>
+      </Link>
     </div>
   );
 };
