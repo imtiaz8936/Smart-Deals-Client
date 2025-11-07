@@ -1,86 +1,126 @@
 import React from "react";
-import { useLoaderData } from "react-router";
+import { Link, useLoaderData } from "react-router";
+import { ArrowLeft } from "lucide-react";
 
 const ProductDetails = () => {
   const { result } = useLoaderData();
-
-  const {
-    title,
-    image,
-    category,
-    price_min,
-    price_max,
-    seller_name,
-    seller_image,
-    email,
-    seller_contact,
-    location,
-    condition,
-    usage,
-    description,
-    created_at,
-    status,
-  } = result;
+  const product = result;
 
   return (
-    <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 max-w-3xl mx-auto mt-6">
-      {/* Product Image */}
-      <div className="w-full h-72 bg-gray-200 rounded-xl overflow-hidden mb-6">
-        <img src={image} alt={title} className="w-full h-full object-cover" />
-      </div>
+    <div className="max-w-7xl mx-auto bg-gray-50 rounded-xl shadow-sm p-8">
+      {/* Back Button */}
+      <button className="flex items-center gap-2 text-gray-600 mb-6 cursor-pointer hover:text-purple-600">
+        <Link to="/all-products" className="flex gap-1 items-center">
+          <ArrowLeft size={20} />
+          <span className="font-medium">Back To Products</span>
+        </Link>
+      </button>
 
-      {/* Product Title & Category */}
-      <div className="flex flex-wrap justify-between items-center mb-3">
-        <h1 className="text-2xl font-semibold text-gray-800">{title}</h1>
-        <span className="bg-purple-100 text-purple-600 text-sm font-medium px-4 py-1 rounded-full">
-          {category}
-        </span>
-      </div>
-
-      {/* Price Range */}
-      <p className="text-purple-600 font-bold text-xl mb-4">
-        ${price_min} - {price_max}
-      </p>
-
-      {/* Condition & Usage */}
-      <div className="flex flex-wrap gap-6 text-gray-700 mb-4">
-        <p>
-          <span className="font-medium text-gray-800">Condition:</span>{" "}
-          {condition === "fresh" ? "Fresh" : "Used"}
-        </p>
-        <p>
-          <span className="font-medium text-gray-800">Usage:</span> {usage}
-        </p>
-        <p>
-          <span className="font-medium text-gray-800">Status:</span> {status}
-        </p>
-      </div>
-
-      {/* Description */}
-      <div className="mb-6">
-        <h3 className="font-semibold text-gray-800 mb-2">Description</h3>
-        <p className="text-gray-600 leading-relaxed">{description}</p>
-      </div>
-
-      {/* Seller Info */}
-      <div className="border-t pt-5 flex flex-wrap items-center gap-5">
-        <img
-          src={seller_image}
-          alt={seller_name}
-          className="w-16 h-16 rounded-full object-cover border"
-        />
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        {/* LEFT SIDE */}
         <div>
-          <h3 className="text-lg font-semibold text-gray-800">{seller_name}</h3>
-          <p className="text-gray-600 text-sm">{email}</p>
-          <p className="text-gray-600 text-sm">{seller_contact}</p>
-          <p className="text-gray-600 text-sm">{location}</p>
+          {/* Product Image */}
+          <div className="bg-gray-200 h-[380px] rounded-lg overflow-hidden mb-5">
+            <img
+              src={product.image}
+              alt={product.title}
+              className="w-full h-full object-cover"
+            />
+          </div>
+
+          {/* Product Description */}
+          <div className="bg-white p-5 rounded-lg shadow-sm">
+            <h3 className="text-lg font-semibold text-gray-900 mb-3">
+              Product Description
+            </h3>
+
+            <div className="flex justify-between text-sm text-gray-600 mb-2">
+              <span>
+                <span className="font-medium text-purple-700">Condition:</span>{" "}
+                {product.condition === "fresh" ? "New" : "Used"}
+              </span>
+              <span>
+                <span className="font-medium text-purple-700">Usage Time:</span>{" "}
+                {product.usage}
+              </span>
+            </div>
+            <hr className="mb-3" />
+
+            <p className="text-sm text-gray-700 leading-relaxed">
+              {product.description}
+            </p>
+          </div>
+        </div>
+
+        {/* RIGHT SIDE */}
+        <div>
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+            {product.title} For Sale
+          </h1>
+          <span className="bg-purple-100 text-purple-700 text-xs font-medium px-3 py-1 rounded-full">
+            {product.category}
+          </span>
+
+          <div className="mt-4 text-green-600 text-2xl font-semibold">
+            ${product.price_min} - {product.price_max}
+          </div>
+          <p className="text-gray-500 text-sm mb-4">Price starts from</p>
+
+          {/* Product Details */}
+          <div className="bg-white p-4 rounded-lg shadow-sm mb-4">
+            <h3 className="font-semibold text-gray-900 mb-2">
+              Product Details
+            </h3>
+            <p className="text-sm text-gray-600">
+              <span className="font-medium">Product ID:</span> {product._id}
+            </p>
+            <p className="text-sm text-gray-600">
+              <span className="font-medium">Posted:</span>{" "}
+              {new Date(product.created_at).toLocaleDateString()}
+            </p>
+          </div>
+
+          {/* Seller Information */}
+          <div className="bg-white p-4 rounded-lg shadow-sm mb-4">
+            <h3 className="font-semibold text-gray-900 mb-3">
+              Seller Information
+            </h3>
+
+            <div className="flex items-center gap-3 mb-3">
+              <img
+                src={product.seller_image}
+                alt={product.seller_name}
+                className="w-12 h-12 rounded-full border"
+              />
+              <div>
+                <p className="font-medium text-gray-900">
+                  {product.seller_name}
+                </p>
+                <p className="text-sm text-gray-500">{product.email}</p>
+              </div>
+            </div>
+
+            <p className="text-sm text-gray-600">
+              <span className="font-medium">Location:</span> {product.location}
+            </p>
+            <p className="text-sm text-gray-600">
+              <span className="font-medium">Contact:</span>{" "}
+              {product.seller_contact}
+            </p>
+            <p className="text-sm mt-2">
+              <span className="font-medium">Status:</span>{" "}
+              <span className="bg-yellow-100 text-yellow-700 px-2 py-0.5 rounded-md text-xs">
+                {product.status}
+              </span>
+            </p>
+          </div>
+
+          {/* Buy Button */}
+          <button className="w-full cursor-pointer mt-4 py-3 bg-gradient-to-r from-purple-600 to-indigo-500 text-white rounded-lg font-medium hover:opacity-90 transition">
+            I Want To Buy This Product
+          </button>
         </div>
       </div>
-
-      {/* Posted Date */}
-      <p className="mt-6 text-sm text-gray-500">
-        Posted on {new Date(created_at).toLocaleDateString()}
-      </p>
     </div>
   );
 };
