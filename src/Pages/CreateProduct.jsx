@@ -1,4 +1,6 @@
+import { ArrowLeft } from "lucide-react";
 import React, { useState } from "react";
+import { Link } from "react-router";
 
 const CreateProduct = () => {
   const [condition, setCondition] = useState("Brand New");
@@ -50,10 +52,19 @@ const CreateProduct = () => {
 
   return (
     <div>
-      <h1 className="font-bold text-4xl text-center my-10">
+      <div className="flex justify-center">
+        <button className="text-gray-600 mb-5 cursor-pointer hover:text-purple-600 mt-10">
+          <Link to="/all-products" className="flex gap-1 items-center">
+            <ArrowLeft size={20} />
+            <span className="font-medium">Back To Products</span>
+          </Link>
+        </button>
+      </div>
+
+      <h1 className="font-bold text-4xl text-center mb-10">
         Create <span className="text-[#894fed]">A Product</span>
       </h1>
-      <div className="max-w-3xl mx-auto bg-white p-8 rounded-2xl shadow-lg">
+      <div className="max-w-3xl mx-auto bg-white p-8 rounded-2xl shadow-lg mb-8">
         <form
           onSubmit={handleCreateProduct}
           className="grid grid-cols-1 md:grid-cols-2 gap-6"

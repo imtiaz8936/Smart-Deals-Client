@@ -9,7 +9,7 @@ const ProductDetails = () => {
   return (
     <div className="max-w-7xl mx-auto bg-gray-50 rounded-xl shadow-sm p-8">
       {/* Back Button */}
-      <button className="flex items-center gap-2 text-gray-600 mb-6 cursor-pointer hover:text-purple-600">
+      <button className="text-gray-600 mb-6 cursor-pointer hover:text-purple-600">
         <Link to="/all-products" className="flex gap-1 items-center">
           <ArrowLeft size={20} />
           <span className="font-medium">Back To Products</span>
@@ -116,7 +116,7 @@ const ProductDetails = () => {
           </div>
 
           {/* Buy Button */}
-          <button className="w-full cursor-pointer mt-4 py-3 bg-gradient-to-r from-purple-600 to-indigo-500 text-white rounded-lg font-medium hover:opacity-90 transition">
+          <button className="w-full cursor-pointer mt-4 py-3 bg-linear-to-r from-purple-600 to-indigo-500 text-white rounded-lg font-medium hover:opacity-90 transition">
             I Want To Buy This Product
           </button>
         </div>
