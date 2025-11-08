@@ -109,7 +109,7 @@ const ProductDetails = () => {
             </p>
             <p className="text-sm mt-2">
               <span className="font-medium">Status:</span>{" "}
-              <span className="bg-yellow-100 text-yellow-700 px-2 py-0.5 rounded-md text-xs">
+              <span className="bg-yellow-300 text-center px-2 py-1 rounded-full font-medium text-xs">
                 {product.status}
               </span>
             </p>

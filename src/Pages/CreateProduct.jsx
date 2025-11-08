@@ -262,7 +262,7 @@ const CreateProduct = () => {
           <div className="md:col-span-2">
             <button
               type="submit"
-              className="w-full bg-gradient-to-r from-purple-500 to-indigo-500 text-white py-3 rounded-md font-semibold hover:opacity-90 transition"
+              className="w-full bg-linear-to-r from-purple-500 to-indigo-500 text-white py-3 rounded-md font-semibold hover:opacity-90 transition"
             >
               Create A Product
             </button>
